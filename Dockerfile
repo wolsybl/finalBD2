@@ -6,9 +6,8 @@ RUN apt-get update \
 
 WORKDIR /app
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir pymongo==4.8.0
 
 COPY app ./app
 
-CMD ["python", "app/main.py"]
+CMD ["python", "-m", "app.main"]

@@ -53,7 +53,7 @@ docker compose --profile gui up --build
 4) Seed data (in a new terminal):
 
 ```bash
-docker compose exec app python app/seed.py
+docker compose exec app python -m app.seed
 ```
 
 5) The Tkinter window requires an X server and the DISPLAY env var configured.
@@ -70,7 +70,7 @@ If you want a local MongoDB instead of Atlas:
 docker compose --profile localdb up -d mongo
 ```
 
-2) Set MONGO_URI to mongodb://localhost:27017 in .env
+2) Set MONGO_URI to mongodb://mongo:27017 in .env
 
 3) Start the GUI container:
 
