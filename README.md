@@ -34,7 +34,7 @@ purchases:
 - schedule
 - purchased_at
 
-## Ejecucion por defecto (Atlas + App en Docker)
+## Ejecucion local (GUI + Atlas)
 
 1) Cree un archivo .env (use .env.example como plantilla):
 
@@ -44,38 +44,24 @@ copy .env.example .env
 
 2) Edite .env con su URI de Atlas y el nombre de la BD.
 
-3) Inicie el contenedor con la GUI:
+3) Cree un venv e instale dependencias:
 
 ```bash
-docker compose --profile gui up --build
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-4) Cargue datos de prueba (en otra terminal):
+4) Cargue datos de prueba:
 
 ```bash
-docker compose exec app python -m app.seed
+python -m app.seed
 ```
 
-5) La ventana Tkinter requiere un servidor X y la variable DISPLAY configurada.
-   - Windows: establezca DISPLAY en host.docker.internal:0.0 antes de ejecutar docker compose.
-   - Linux: export DISPLAY=:0 y habilite acceso X11.
-
-## Opcional: Mongo local en Docker
-
-Si quiere MongoDB local en lugar de Atlas:
-
-1) Inicie MongoDB:
+5) Ejecute la GUI:
 
 ```bash
-docker compose --profile localdb up -d mongo
-```
-
-2) Configure MONGO_URI en .env con mongodb://mongo:27017
-
-3) Inicie el contenedor con la GUI:
-
-```bash
-docker compose --profile gui up --build
+python -m app.main
 ```
 
 ## Notas
