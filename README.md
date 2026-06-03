@@ -1,13 +1,13 @@
-# Cinema Management System (MongoDB + Python + Tkinter)
+# Sistema de Gestion de Cine (MongoDB + Python + Tkinter)
 
-This project implements a cinema inventory and user management system with:
-- User registration and history.
-- Movie inventory management.
-- Ticket purchasing with real-time availability updates.
-- XML receipt generation.
-- Simple reports for purchases and availability.
+Este proyecto implementa un sistema de inventario y gestion de usuarios para una sala de cine con:
+- Registro de usuarios y historial.
+- Gestion del inventario de peliculas.
+- Compra de entradas con actualizacion en tiempo real.
+- Generacion de recibos en XML.
+- Reportes simples de compras y disponibilidad.
 
-## Data Model (MongoDB collections)
+## Modelo de datos (colecciones en MongoDB)
 
 users:
 - name
@@ -34,50 +34,50 @@ purchases:
 - schedule
 - purchased_at
 
-## Default Run (Atlas + Docker App)
+## Ejecucion por defecto (Atlas + App en Docker)
 
-1) Create a .env file (use .env.example as a template):
+1) Cree un archivo .env (use .env.example como plantilla):
 
 ```bash
 copy .env.example .env
 ```
 
-2) Edit .env with your Atlas URI and DB name.
+2) Edite .env con su URI de Atlas y el nombre de la BD.
 
-3) Start the GUI container:
+3) Inicie el contenedor con la GUI:
 
 ```bash
 docker compose --profile gui up --build
 ```
 
-4) Seed data (in a new terminal):
+4) Cargue datos de prueba (en otra terminal):
 
 ```bash
 docker compose exec app python -m app.seed
 ```
 
-5) The Tkinter window requires an X server and the DISPLAY env var configured.
-   - Windows: set DISPLAY to host.docker.internal:0.0 in your shell before running docker compose.
-   - Linux: export DISPLAY=:0 and allow X11 access.
+5) La ventana Tkinter requiere un servidor X y la variable DISPLAY configurada.
+   - Windows: establezca DISPLAY en host.docker.internal:0.0 antes de ejecutar docker compose.
+   - Linux: export DISPLAY=:0 y habilite acceso X11.
 
-## Optional: Local Mongo in Docker
+## Opcional: Mongo local en Docker
 
-If you want a local MongoDB instead of Atlas:
+Si quiere MongoDB local en lugar de Atlas:
 
-1) Start MongoDB:
+1) Inicie MongoDB:
 
 ```bash
 docker compose --profile localdb up -d mongo
 ```
 
-2) Set MONGO_URI to mongodb://mongo:27017 in .env
+2) Configure MONGO_URI en .env con mongodb://mongo:27017
 
-3) Start the GUI container:
+3) Inicie el contenedor con la GUI:
 
 ```bash
 docker compose --profile gui up --build
 ```
 
-## Notes
-- Receipts are saved to the receipts folder as XML files.
-- Ticket availability is updated atomically during purchase.
+## Notas
+- Los recibos se guardan en la carpeta receipts como archivos XML.
+- La disponibilidad de entradas se actualiza de forma atomica al comprar.

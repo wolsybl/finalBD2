@@ -31,4 +31,4 @@ DB_NAME = os.getenv("DB_NAME", "cinema")
 RECEIPTS_DIR = os.getenv("RECEIPTS_DIR", "receipts")
 
 if not MONGO_URI:
-    raise RuntimeError("MONGO_URI is required. Set it in .env or your shell.")
+    raise RuntimeError("MONGO_URI es obligatorio. Configurelo en .env o en su consola.")
