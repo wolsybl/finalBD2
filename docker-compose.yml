@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:7
+    container_name: cinema-mongo
+    profiles:
+      - localdb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+  app:
+    build: .
+    container_name: cinema-app
+    profiles:
+      - gui
+    env_file:
+      - .env
+    environment:
+      DISPLAY: ${DISPLAY}
+    volumes:
+      - ./app:/app/app
+      - ./receipts:/app/receipts
+volumes:
+  mongo_data:
