@@ -30,5 +30,13 @@ MONGO_URI = os.getenv("MONGO_URI")
 DB_NAME = os.getenv("DB_NAME", "cinema")
 RECEIPTS_DIR = os.getenv("RECEIPTS_DIR", "receipts")
 
+if __name__ == "__main__":
+    from app.config import DB_NAME, MONGO_URI
+    from pymongo import MongoClient
+
+    client = MongoClient(MONGO_URI)
+    db = client[DB_NAME]
+    print("Conexión exitosa a la base de datos:", db.name)
+
 if not MONGO_URI:
     raise RuntimeError("MONGO_URI es obligatorio. Configurelo en .env o en su consola.")
